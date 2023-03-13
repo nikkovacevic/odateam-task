@@ -46,7 +46,7 @@ and since it is sorted in ascending order, we can use the method *subList()* to 
 1. Clone the repository with HTTPS `git clone https://github.com/nikkovacevic/odateam-task.git`
 or SSH `git clone git@github.com:nikkovacevic/odateam-task.git` or download the zip file and extract it.
 <br/><br/>
-2. Build the project using the command `mvn clean install`.
+2. Build the project using the command `mvn clean install` in the root directory of the project.
 <br/><br/>
 3. Run `docker build -t odateam-task .` in the root directory of the project.
 <br/><br/>
