@@ -22,31 +22,34 @@ public class RatesController {
 
     @GetMapping("/")
     @ResponseBody
-    public List<Country> getAll() {
+    public List<Country> getAll() throws IOException {
         try {
             return ratesService.getRatesData();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (Exception e) {
+            System.out.println("Error getting all countries...");
+            throw e;
         }
     }
 
     @GetMapping("/highest")
     @ResponseBody
-    public List<Country> getTopThreeHighest() {
+    public List<Country> getTopThreeHighest() throws IOException {
         try {
             return ratesService.getHighestStandardRates();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (Exception e) {
+            System.out.println("Error getting the three countries with the highest standard VAT rates...");
+            throw e;
         }
     }
 
     @GetMapping("/lowest")
     @ResponseBody
-    public List<Country> getTopThreeLowest() {
+    public List<Country> getTopThreeLowest() throws IOException {
         try {
             return ratesService.getLowestReducedRates();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (Exception e) {
+            System.out.println("Error getting the three countries with the lowest reduced VAT rates...");
+            throw e;
         }
     }
 
