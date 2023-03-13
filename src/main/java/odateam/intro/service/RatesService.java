@@ -2,8 +2,8 @@ package odateam.intro.service;
 
 import odateam.intro.model.Country;
 import odateam.intro.utils.DataLoader;
-
 import org.springframework.stereotype.Service;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -31,7 +31,7 @@ public class RatesService {
         List<Country> allCountries = loadJsonData();
         List<Country> filteredCountries = removeDuplicates(allCountries);
 
-        Collections.sort(filteredCountries, Comparator.comparingDouble(o -> o.getStandard_rate()));
+        filteredCountries.sort(Comparator.comparingDouble(o -> o.getStandard_rate()));
         Collections.reverse(filteredCountries);
 
         return filteredCountries.subList(0, 3);
@@ -42,7 +42,7 @@ public class RatesService {
         List<Country> filteredCountries = removeDuplicates(allCountries);
         List<Country> newCountries = removeCountriesWithInvalidType(filteredCountries);
 
-        Collections.sort(newCountries, Comparator.comparingDouble(o -> (Double) o.getReduced_rate()));
+        newCountries.sort(Comparator.comparingDouble(o -> (Double) o.getReduced_rate()));
 
         return newCountries.subList(0, 3);
     }
