@@ -39,18 +39,28 @@ and since it is sorted in ascending order, we can use the method *subList()* to 
 ### Prerequisites
 
 - Docker
+- Maven
 
 ### Installation
 
 1. Clone the repository with HTTPS `git clone https://github.com/nikkovacevic/odateam-task.git`
 or SSH `git clone git@github.com:nikkovacevic/odateam-task.git` or download the zip file and extract it.
 <br/><br/>
-2. Run `docker build -t odateam-task .` in the root directory of the project.
+2. Build the project using the command `mvn clean install`.
 <br/><br/>
-3. Run `docker run -p 8080:8080 odateam-task` to start the service.
+3. Run `docker build -t odateam-task .` in the root directory of the project.
 <br/><br/>
+4. Run `docker run -p 8080:8080 odateam-task` to start the service.
+
+Or open the project in your IDE and run the class *OdateamTaskApplication*.
 
 When the service is running, you can access the API
 documentation at http://localhost:8080/swagger-ui.html and
 at http://localhost:8080/v3/api-docs
+
+### Stoping the service
+
+1. To stop the service, run `docker ps` to get the container ID.
+<br/><br/>
+2. Run `docker stop <container ID>` to stop the service.
 
