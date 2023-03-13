@@ -1,7 +1,6 @@
 package odateam.intro.controller;
 
 import odateam.intro.model.Country;
-import odateam.intro.model.RatesData;
 import odateam.intro.service.RatesService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
