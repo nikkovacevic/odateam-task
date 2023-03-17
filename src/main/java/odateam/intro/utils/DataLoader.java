@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class DataLoader {
 
-    public static List<Country> loadRatesData() throws IOException {
+    public List<Country> loadRatesData() throws IOException {
 
         RestTemplate restTemplate = new RestTemplate();
         String url = "https://euvatrates.com/rates.json";

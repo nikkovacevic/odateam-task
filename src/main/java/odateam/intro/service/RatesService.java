@@ -20,7 +20,8 @@ public class RatesService {
 
     public List<Country> loadJsonData() throws IOException {
         if (jsonData == null) {
-            jsonData = DataLoader.loadRatesData();
+            DataLoader dataLoader = new DataLoader();
+            jsonData = dataLoader.loadRatesData();
         }
         return jsonData;
     }
