@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class RatesService {
@@ -31,7 +32,7 @@ public class RatesService {
         List<Country> allCountries = loadJsonData();
         List<Country> filteredCountries = removeDuplicates(allCountries);
 
-        filteredCountries.sort(Comparator.comparingDouble(o -> o.getStandard_rate()));
+        filteredCountries.sort(Comparator.comparingDouble(Country::getStandard_rate));
         Collections.reverse(filteredCountries);
 
         return filteredCountries.subList(0, 3);
@@ -48,29 +49,23 @@ public class RatesService {
     }
 
     private List<Country> removeCountriesWithInvalidType(List<Country> countries) {
-        List<Country> newList = new ArrayList<>();
-
-        for (Country country : countries) {
-            //some countries have a reduced rate value set to false
-            boolean validRateType = !country.getReduced_rate().equals(false);
-            if (validRateType) {
-                newList.add(country);
-            }
-        }
-        return newList;
+        return countries.stream()
+                .filter(country -> !country.getReduced_rate().equals(false))
+                .collect(Collectors.toList());
     }
 
     private List<Country> removeDuplicates(List<Country> countries) {
-        List<Country> filteredList = new ArrayList<>();
         List<String> countryNames = new ArrayList<>();
-
-        for (Country country : countries) {
-            if (!countryNames.contains(country.getCountry())) {
-                filteredList.add(country);
-                countryNames.add(country.getCountry());
-            }
-        }
-        return filteredList;
+        return countries.stream()
+                .filter(country -> {
+                    if (countryNames.contains(country.getCountry())) {
+                        return false;
+                    } else {
+                        countryNames.add(country.getCountry());
+                        return true;
+                    }
+                })
+                .collect(Collectors.toList());
     }
 
 
