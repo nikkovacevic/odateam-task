@@ -2,6 +2,7 @@ package odateam.intro.service;
 
 import odateam.intro.model.Country;
 import odateam.intro.utils.DataLoader;
+import odateam.intro.utils.Query;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -46,6 +47,19 @@ public class RatesService {
         newCountries.sort(Comparator.comparingDouble(o -> (Double) o.getReduced_rate()));
 
         return newCountries.subList(0, 3);
+    }
+
+    public IQueryStrategy getQueryStrategy(Query query) {
+        switch (query) {
+            case ALL:
+                return new GetAllStrategy(this);
+            case HIGHEST:
+                return new GetHighestStrategy(this);
+            case LOWEST:
+                return new GetLowestStrategy(this);
+            default:
+                throw new IllegalArgumentException("Invalid query type: " + query);
+        }
     }
 
     private List<Country> removeCountriesWithInvalidType(List<Country> countries) {

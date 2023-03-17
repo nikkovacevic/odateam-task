@@ -14,25 +14,14 @@ Provide source code, a way to run it and some kind documentation for the API.
 
 ## Solution
 
-The solution is a Spring Boot application that exposes three endpoints:
-- GET ... */api/rates/* ... for retrieving all EU countries from the input JSON file
-- GET ... */api/rates/highest* ... for retrieving the three EU countries with the highest standard VAT rate
-- GET ... */api/rates/lowest* ... for retrieving the three EU countries with the lowest reduced VAT rate.
+The solution is a Spring Boot application that exposes a single endpoint:
+- GET ... */api/rates/* ... for retrieving all the required data
 
-In the *RatesService* class, the method *getRates()* is used to retrieve all EU countries from the input JSON file.
-Those are stored in a List of Country objects to prevent loading the data from the file every time the endpoints are called.
+The endpoint takes a request parameter query, which can have values ALL, HIGHEST and LOWEST. Based
+on the value of the query parameter, the endpoint returns all the data, the three countries with 
+the highest standard VAT rate or the three countries with the lowest reduced VAT rate. This was implemented 
+using the Strategy pattern to follow the Open/Closed principle.
 
-The method *getHighestRates()* is used to retrieve the three EU countries with the highest standard VAT rate.
-First of all we remove the duplicates from the list of countries(GB and UK are the same country so the data is repeated).
-From the dataset we can see that the standard VAT rate is always of type double, so we can
-use the method *Collections.sort()* to sort the list of countries by the standard VAT rate. Because the
-list is sorted in ascending order, we can use the method Collections.reverse() to reverse the order.
-Then we can use the method *subList()* to get the first three elements from the list.
-
-The method *getLowestRates()* is used to retrieve the three EU countries with the lowest reduced VAT rate.
-Again we remove the duplicates from the list of countries. From the data, we can see that the reduced VAT rate
-can be of type double or false, so we need to filter the list. After that we can again sort the list by the reduced VAT rate,
-and since it is sorted in ascending order, we can use the method *subList()* to get the first three elements from the list.
 
 ## Usage   
 
