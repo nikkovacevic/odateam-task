@@ -1,0 +1,19 @@
+<div class='listItem'>
+  <div class='leftSide'>
+    <span class='small'>Country:</span>
+    <h4 class='country'>
+      {{country.country}}
+    </h4>
+  </div>
+  <div class='rightSide'>
+    <p class='data'>
+      <span class='small'> Standard rate:</span> {{country.standard_rate + '%'}}
+    </p>
+    <p class='data'>
+      <span class='small'>
+        {{country.reduced_rate ? 'Reduced rate: ' : 'Incomplete data'}}
+      </span>
+      {{country.reduced_rate ? country.reduced_rate + '%' : ''}}
+    </p>
+  </div>
+</div>

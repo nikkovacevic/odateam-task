@@ -1,0 +1,40 @@
+.listItem {
+  margin-bottom: 16px;
+  padding: 16px 32px;
+
+  border: 2px solid #90b4ce;
+  border-radius: 8px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.leftSide {
+  display: flex;
+  align-items: baseline;
+}
+
+.country {
+  font-size: 32px;
+  letter-spacing: 2px;
+  color: #094067;
+}
+
+.small {
+  font-size: 14px;
+  margin-right: 8px;
+  color: #5f6c7b;
+}
+
+.rightSide {
+  width: 35%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.data {
+  font-size: 24px;
+  color: #094067;
+  font-weight: 500;
+}
