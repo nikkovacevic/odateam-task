@@ -1,2 +1,10 @@
-<app-header/>
-<app-all-countries/>
+<div>
+  <app-header/>
+  <div class='tabs'>
+    <div class='tab' (click)='onTabClick("ALL", "List of all the countries and their VAT rates:")' [class.active]='selectedTab === "all"'>All</div>
+    <div class='tab' (click)='onTabClick("HIGHEST", "List of countries with the highest standard VAT rate:")' [class.active]='selectedTab === "highest"'>Highest</div>
+    <div class='tab' (click)='onTabClick("LOWEST", "List of countries with the lowest reduced VAT rate:")' [class.active]='selectedTab === "lowest"'>Lowest</div>
+  </div>
+  <app-all-countries [type]='selectedType' [title]='selectedTitle'/>
+</div>
+

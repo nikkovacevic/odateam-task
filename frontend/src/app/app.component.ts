@@ -6,5 +6,25 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title: string = 'frontend';
+  selectedTab: string = 'all';
+  selectedType: string = 'ALL';
+  selectedTitle: string = 'List of all the countries and their VAT rates:';
+
+
+  onTabClick(type: string, title: string) {
+    this.selectedType = type;
+    this.selectedTitle = title;
+
+    switch (type) {
+      case 'ALL':
+        this.selectedTab = 'all';
+        break;
+      case 'HIGHEST':
+        this.selectedTab = 'highest';
+        break;
+      case 'LOWEST':
+        this.selectedTab = 'lowest';
+        break;
+    }
+  }
 }

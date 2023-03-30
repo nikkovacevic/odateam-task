@@ -13,6 +13,7 @@ export class AllCountriesService {
   }
 
   getAllCountries(query: string): Observable<Country[]> {
+    console.log('Fetching ' + query);
     return this.http.get<Country[]>(this.apiUrl + query);
   }
 }
